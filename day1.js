@@ -154,6 +154,7 @@ console.log(studentList[3].relationStatus);
 console.log(studentList[1,3,4,5].color[2]);
 
 
+// console.log(studentList[0].color?.[2]);
 
 
 
