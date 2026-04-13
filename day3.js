@@ -161,13 +161,110 @@ else{
 }
 
 
+//9. spread operator-- ... is use to make a shallow copy from a pre-existing object or array into a new object or array
+
+let userObj = {
+    name: 'Tokunbo Anjola',
+    userAge: 90,
+    gender: 'Female',
+     address: {
+        homeAddress: '123 main street',
+        city: 'lagos',
+        state: 'Lagos'
+     },
+     color: ['yello', 'green', 'blue', 'crimson'],
+     userFind: 'apple'
+    
+};
+
+console.log(userObj);
+
+//DATA DESTRUCTURING--
+
+let {name, userage, gender, address, userFind} = userObj;
+console.log(userage);
+console.log(address);
+console.log(userFind);
 
 
 
 
+let newUserObj = [1,2,3,4,5,6,7,8,9, {...userObj}];
+console.log(newUserObj);
+
+
+let newArr = [...newUserObj];
+console.log(newArr);
+
+let newObj = {...newArr};
+console.log(newObj);
 
 
 
+function getUpdatedRoot(){
+    window.location.href = './day2.html'
+}
+
+
+//CLASSWORK
+
+//CREATE AN EVEN OR ODD CHECKER
+//1. CREATE VARIABLE NUMBER
+//2.USE MODULUS % OPERATOR
+//3. CHECK IF NUMBER IS EVEN OR ODD
+
+
+let number = 12;
+
+if(number % 2 == '0'){
+    console.log('Even number');
+    
+}else{
+    console.log('Odd number');
+    
+}
+
+
+//create a shopping discount checker if the purchase amount is above 5000, apply a 10% discount.
+
+let amount = 5000;
+amount = 5500;
+
+if(amount > 5000){
+    console.log("apply 10% discount");
+    
+}
+else{
+    console.log("No discount");
+    
+}
+//CREATE A VARIABLE CALLED numberCheck.
+//check whether the numberCheck is
+//1.postive
+//2. negative
+//3. zero
+ 
+let numberCheck = -0;
+
+if(numberCheck > 0){
+    console.log(`number is positive`);
+    
+}
+else if(numberCheck < 0){
+    console.log(`number is negative`);
+    
+}
+else{
+    console.log(`number is zero`);
+    
+}
+
+
+//ASSIGNMENT
+
+//CHECK IF A PERSON CAN ENTER A CLUB:
+//1. MUST BE 18+
+//2. MUST HAVE AN ID CARD.
 
 
 
