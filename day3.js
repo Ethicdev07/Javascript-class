@@ -266,6 +266,17 @@ else{
 //1. MUST BE 18+
 //2. MUST HAVE AN ID CARD.
 
+let baseAge = 40;
+let partyCard;
+
+if(baseAge <= 19 && (partyCard = true)){
+    console.log('access granted');
+    
+}else{
+    console.log('access denied');
+    
+}
+
 
 
 
