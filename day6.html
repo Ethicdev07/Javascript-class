@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .paragraph{
+            color: blue;
+            transform: translateX(200px);
+            transition: all 20s ease;
+        }
+    </style>
 </head>
 <body>
-    
+    <button onclick="getUsername()">click</button>
+
+    <button ondblclick="changeUiColor()">double click</button>
+
+    <h1 id="header">Hello, i am going to the farm</h1>
+
+
+    <button class="hello">Hello</button>
+
+
+    <li class="list-items"></li>
+    <li class="list-items"></li>
+    <li class="list-items"></li>
+    <li class="list-items"></li>
+    <li class="list-items"></li>
+
+
+    <p class="paragraph" id="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi earum voluptatibus placeat facere sapiente dignissimos facilis officiis consectetur incidunt ratione?</p>
+
+    <button onclick="getInter()">change paragraph</button>
+
+
+    <div>
+        <input type="text" id="input">
+        <input type="text" id="input2">
+        <button onclick="getSum()">sum</button>
+        <h2 id="answer"></h2>
+    </div>
+
+
 </body>
 <script src="./day6.js"></script>
 </html>
