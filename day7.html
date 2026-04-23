@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 100px auto;
+            gap: 2em;
+        }
+        input, select{
+            padding: 10px 20px;
+        }
+        button{
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="input1">
+    <select name="" id="operators">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="x">x</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="text" id="input2">
+    <button onclick="canCalculate()">calculate</button>
+    <input type="text" id="result">
+</body>
+<script src="./day7.js"></script>
+</html>
