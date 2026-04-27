@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #displayTables{
+            display: flex;
+            gap: 2em;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <input type="number" id="userage">
+        <select name="" id="idcard">
+            <option value="true">has an id card</option>
+            <option value="false">does not have an id card</option>
+        </select>
+        <button onclick="getPartyAttendanceStatus()">click</button>
+    </div>
+
+    <div>
+        <h1>Multiplication Table</h1>
+        <span>from: <input type="text" id="inp1"></span>
+        <span>to: <input type="text" id="inp2"></span>
+        <button onclick="getMultiplicationTable()">Multiplication</button>
+
+        <div id="displayTables"></div>
+    </div>
+    
+</body>
+<script src="./correction3.js"></script>
+</html>
