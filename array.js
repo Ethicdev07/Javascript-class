@@ -116,10 +116,18 @@ console.log(colors.slice(0, 2)); //0--starting, 2-stop ppoint
 console.log(colors.splice(0, 2, "ToKunbo"));
 console.log(colors);
 
+//15. map()--is used to iterate an array
+
+let numbers = [2,3,4,5,6];
+
+let numMap = numbers.map((dami)=> dami * 2);
+console.log(numMap);
+
+
 let listofProducts = [
   {
     id: 1,
-    productName: "Binatone hdf",
+    productName: "Binatone fan hdf",
     category: "appliance",
     description: "This is an 18 inches electric fan with a plastic blade",
   },
@@ -135,8 +143,12 @@ let listofProducts = [
      category: 'Women',
      description: 'a multicolor 42inches chinese bone straight'
     },
-
-    'binatone'
+      {
+    id: 1,
+    productName: "Binatone blender",
+    category: "appliance",
+    description: "This is an 18 inches electric fan with a plastic blade",
+  },
 
 ];
 
@@ -144,14 +156,24 @@ function canSearchItems() {
     let inputSearch = document.getElementById('input').value;
     let display = document.getElementById('display');
 
-    // let check = listofProducts.find((items)=> items == inputSearch);
+    let searchResults = listofProducts.filter((item) => {
+        if (typeof item === 'object' && item !== null && item.productName) {
+            return item.productName.toLowerCase().includes(inputSearch.toLowerCase());
+        }
+        return false;
+    });
 
-    listofProducts.forEach((items, index)=>{
-        console.log(items);
-        
-    })
-
-    
-
-
+    if (searchResults.length > 0) {
+        display.innerHTML = searchResults.map((laptop) => {
+            return `
+                <div class="product-item">
+                    <h3>${laptop.productName}</h3>
+                    <p><strong>Category:</strong> ${laptop.category}</p>
+                    <p><strong>Description:</strong> ${laptop.description}</p>
+                </div>
+            `;
+        });
+    } else {
+        display.innerHTML = '<p>No products found matching your search.</p>';
+    }
 }

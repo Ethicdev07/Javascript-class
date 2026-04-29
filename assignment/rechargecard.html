@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: darkgray;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .first-input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .first-input p {
+        margin-right: 20px;
+      }
+
+      .first-input span {
+        display: flex;
+        align-items: center;
+      }
+
+      .first-input input[type="text"],
+      .first-input select {
+        padding: 8px;
+        margin-right: 10px;
+      }
+
+      .first-input button {
+        padding: 8px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .first-input button:hover {
+        background-color: #0056b3;
+      }
+
+      .amt {
+        text-align: center;
+      }
+
+      .code {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .code input[type="text"],
+      .code button {
+        padding: 8px;
+        margin-right: 10px;
+      }
+
+      .code button {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .code button:hover {
+        background-color: #218838;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table th,
+      .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      .table th {
+        background-color: #f2f2f2;
+      }
+
+      .table th:first-child,
+      .table td:first-child {
+        width: 5%;
+      }
+
+      .table th:nth-child(2),
+      .table td:nth-child(2) {
+        width: 20%;
+      }
+
+      .table th:nth-child(3),
+      .table td:nth-child(3) {
+        width: 10%;
+      }
+
+      .table th:nth-child(4),
+      .table td:nth-child(4) {
+        width: 15%;
+      }
+
+      .table th:nth-child(5),
+      .table td:nth-child(5) {
+        width: 10%;
+      }
+
+      .table th:nth-child(6),
+      .table td:nth-child(6) {
+        width: 15%;
+      }
+
+      .table th:nth-child(7),
+      .table td:nth-child(7) {
+        width: 15%;
+      }
+
+      .table th:nth-child(8),
+      .table td:nth-child(8) {
+        width: 10%;
+        text-align: center;
+      }
+
+      .table button {
+        padding: 6px 12px;
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .table button:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Recharge Card Generator</h1>
+    <div class="first-input">
+      <p>
+        Select Network:
+        <select id="network">
+          <option value="MTN">MTN</option>
+          <option value="GLO">GLO</option>
+          <option value="AIRTEL">AIRTEL</option>
+          <option value="9MOBILE">9MOBILE</option>
+        </select>
+      </p>
+      <span>
+        <p>Enter Pin: <input type="text" id="pin" /></p>
+        <button onclick="recharge()">Recharge</button>
+      </span>
+    </div>
+    <p class="amt">
+      Amount:
+      <select id="amount">
+        <option value="#50">#50</option>
+        <option value="#100">#100</option>
+        <option value="#200">#200</option>
+        <option value="#500">#500</option>
+        <option value="#1000">#1000</option>
+      </select>
+    </p>
+    <div class="code">
+      <p>Code: <input type="text" id="codeInput" /></p>
+      <button onclick="generate()">Generate</button>
+      <button onclick="save()">Save Pin</button>
+    </div>
+    <table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">Network Operator</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Pin</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date Created</th>
+            <th scope="col">Date Used</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </table>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    let cardArr = [];
+    let randomNumber;
+    let user;
+
+    function generate() {
+      randomNumber = Math.floor(Math.random() * 23445875957) * 1;
+      codeInput.value = randomNumber;
+    }
+
+    function save() {
+      codeInput.value = "";
+      user = {
+        network: network.value,
+        amount: amount.value,
+        pin: "",
+        codeInput: codeInput.value,
+        status: "unused",
+        dateCreated: new Date().toLocaleDateString(),
+        dateUsed: "Not used yet",
+      };
+      if (network.value === "MTN") {
+        user.pin = `*555*${randomNumber}#`;
+      } else if (network.value === "GLO") {
+        user.pin = `*777*${randomNumber}#`;
+      } else if (network.value === "AIRTEL") {
+        user.pin = `*123*${randomNumber}#`;
+      } else if (network.value === "9MOBILE") {
+        user.pin = `*999*${randomNumber}#`;
+      } else {
+        alert("Invalid Network Selected");
+      }
+      console.log(user.pin);
+
+      cardArr.push(user);
+      console.log(cardArr);
+
+      updateUI();
+    }
+
+    function updateUI() {
+      tableBody.innerHTML = "";
+      for (let i = 0; i < cardArr.length; i++) {
+        tableBody.innerHTML += `
+                <tr>
+                    <th scope = row>${i + 1}</th>
+                    <td>${cardArr[i].network}</td>
+                    <td>${cardArr[i].amount}</td>
+                    <td>${cardArr[i].pin}</td>
+                    <td>${cardArr[i].status}</td>
+                    <td>${cardArr[i].dateCreated}</td>
+                    <td>${cardArr[i].dateUsed}</td>
+                    <td><button onclick="del(${i})">delete</button></td>
+                </tr>
+            `;
+      }
+    }
+
+    function recharge() {
+      let pinInput = document.getElementById("pin").value;
+      let index = cardArr.findIndex((item) => item.pin === pinInput.trim());
+      if (index !== -1) {
+        let today = new Date().toLocaleDateString();
+        cardArr[index].status = "used";
+        cardArr[index].dateUsed = today;
+        alert("Recharge Successful!");
+        updateUI();
+      } else {
+        alert("Pin not found!");
+      }
+      updateUI();
+    }
+
+    function del(index) {
+      cardArr.splice(index, 1);
+      updateUI();
+    }
+  </script>
+</html>
