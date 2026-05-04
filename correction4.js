@@ -69,7 +69,7 @@ function updateTable() {
   cardArr.forEach((items, index) => {
     tableBody.innerHTML += `
         <tr scope="row">
-            <td>${index}</td>
+            <td>${index + 1}</td>
             <td>${items.network}</td>
              <td>${items.amount}</td>
              <td>${items.pin}</td>
@@ -79,7 +79,7 @@ function updateTable() {
         
              <td>${items.dateUsed}</td>
         
-              <td><button>Delete</button></td>
+              <td><button onclick="del(${index})">Delete</button></td>
         
         
         </tr>
@@ -90,3 +90,11 @@ function updateTable() {
         `;
   });
 };
+
+
+function del(params){
+  console.log(params);
+  cardArr.splice(params, 1);
+  updateTable()
+  
+}
