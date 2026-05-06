@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            border: thin solid crimson;
+            width: 50%;
+            padding: 10px;
+        }
+        input{
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="" id="signUpForm">
+        <label for="name">name</label>
+        <input type="text" name="name">
+        <br><br>
+        <label for="email">email</label>
+        <input type="email" name="email">
+        <br><br>
+        <label for="password">password</label>
+        <input type="password" name="password">
+        <br><br>
+        <label for="password"> confirm password</label>
+        <input type="password" name="confirmpassword">
+          <p id="confirmmessage" style="color:  red;"></p>
+        <br><br>
+        <button type="submit">submit</button>
+    </form>
+    <h1 id="display"></h1>
+  
+</body>
+<script src="./localstorage.js"></script>
+</html>
