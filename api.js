@@ -52,18 +52,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
             products.forEach((product, index)=>{
+                const div = document.createElement('div')
+            
                 
                const {title, description, category, price, image} = product;
                 
 
-               displyProduct.innerHTML += `
+               div.innerHTML += `
                     <div class="wrapper">
                          <h2>${category}</h2>
                          <h1>${title}</h1>
-                         <img src="${image}" alt="" width="300px">
-                         <p>${description.slice(0,100)}...</p>
+                         <img src="${image}" alt="" width="200px">
+                         <p id = "paragraph"> ${description.slice(0,100)}...</p>
                          <h4>$${price}</h4>
-                         <button  class="btn btn-primary">Read More</butto>
+                         <button id = "btn  class="btn btn-primary">Read More</butto>
                     
                     
                     
@@ -72,8 +74,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     </div>
                
                `
+                displyProduct.appendChild(div)
+                console.log(displyProduct);
                 
             })
+
 
             
 
