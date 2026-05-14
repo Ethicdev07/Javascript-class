@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>All Blog post</h1>
+
+    <div id="display"></div>
+  </body>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+    } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+    
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAqw2Ckza1PEO_mdm3u6hHbTFVYQHc617U",
+      authDomain: "aprilcohortblog.firebaseapp.com",
+      projectId: "aprilcohortblog",
+      storageBucket: "aprilcohortblog.firebasestorage.app",
+      messagingSenderId: "550699496110",
+      appId: "1:550699496110:web:da5028161b480e7cabf33f",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    console.log(app);
+
+    const db = getFirestore(app);
+    console.log(db);
+
+    const colRef = collection(db, "blogs");
+    console.log(colRef);
+
+    let blogArr = [];
+
+    async function getAllBlogs() {
+      try {
+        const querySnapShot = await getDocs(colRef);
+
+        querySnapShot.forEach((doc) => {
+          const data = { id: doc.id, ...doc.data() };
+
+          blogArr.push(data);
+
+          console.log(blogArr);
+        });
+
+        displayAllBlogs();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    function displayAllBlogs() {
+      let display = document.getElementById("display");
+
+      blogArr.forEach((blog) => {
+        display.innerHTML += `
+            <div style="width:400px;border:2px solid black;padding:20px;margin-bottom:20px;">
+                <img src="${blog.image}" alt="" style="width:300px;">
+                <h1><a href="./api.html?id=${blog.id}">${blog.title}</a></h1>
+                <p>${blog.content}</p>
+                <h5>Author: ${blog.author}</h5>
+                <p>date: ${blog.date}</p>
+                <h6>likes: ${blog.likes}</h6>
+                <h5>Publish:${blog.isPublish ? "Blog Pubslished" : "Blog not yet publsihed"}</h5>  
+            </div>
+        `;
+      });
+    }
+
+    getAllBlogs();
+  </script>
+</html>
