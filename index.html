@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>All blog post</h1>
+    <div style="border: 2px solid red;" id="display"></div>
+
+   
+   
+</body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js"
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCX3-FfylRgnomQ3UQ7p9Y7M5HJjkIMPaU",
+    authDomain: "mediablog-65589.firebaseapp.com",
+    projectId: "mediablog-65589",
+    storageBucket: "mediablog-65589.firebasestorage.app",
+    messagingSenderId: "100464917746",
+    appId: "1:100464917746:web:76b3128200227d845be46b"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  const dataBase = getFirestore();
+  console.log(dataBase);
+  
+  const colRef = collection(dataBase, "mediablog");
+  console.log(colRef);
+
+  let allBlog = [];
+  
+  async function getAllBlogs() {
+    try {
+
+        const querySnapShot = await getDocs(colRef);
+        console.log(querySnapShot);
+
+        querySnapShot.forEach((doc)=>{
+            const data = {id: doc.id, ...doc.data()};
+            console.log(data);
+            
+            allBlog.push(data);
+            console.log(allBlog);
+            
+            
+        })
+
+        displayAllBlogs()
+        
+        
+
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
+  };
+
+
+  function displayAllBlogs(){
+    let display = document.getElementById('display');
+
+    allBlog.forEach((blog)=>{
+        display.innerHTML += `
+
+
+             <a style="border:2px solid green;"  href="./singleblog.html?id=${blog.id}">
+                
+                 <h1>
+                    ${blog.title}
+                </h1>
+                 <img src="${blog.image}" alt="" style="width:300px;">
+                
+                <p>${blog.author}</p>
+
+                <h4>${blog.isPublish ? 'publish' : 'Not publish'}</h4>
+                
+                
+                
+            </a>
+         
+
+            
+           
+        
+        
+        
+        
+        
+        `
+    })
+
+
+  }
+
+  getAllBlogs()
+</script>
+</html>
